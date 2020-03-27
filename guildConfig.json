@@ -1,0 +1,11 @@
+{
+"codeSubBoard": "tmt-level-codes",
+"codeRevBoard" : "tmt-feedback",
+"cardBetaBoard" : "🔷beta-queue",
+"cardGoldBoard" : "🔶gold-queue",
+"botChannel" : "bots-and-spam",
+"modRole" : "Server Moderators",
+"reviewMod" : "Level Moderator",
+"memberRole" : "TMT",
+"Dev" : "163069122601680896"
+}

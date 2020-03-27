@@ -1,0 +1,20 @@
+{
+  "name": "tmtreboot",
+  "version": "1.0.0",
+  "description": "TMTmachine refresh code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Apathivity",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite-pool": "^0.2.3",
+    "better-sqlite3": "^6.0.1",
+    "canvas": "^2.6.1",
+    "common-tags": "^1.8.0",
+    "discord.js": "github:discordjs/discord.js",
+    "enmap": "^5.2.4",
+    "eslint": "^6.8.0"
+  }
+}
