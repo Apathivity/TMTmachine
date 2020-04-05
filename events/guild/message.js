@@ -32,7 +32,6 @@ module.exports = async (bot, message) => {
 		}
 		else if(message.content.startsWith(prefix)) {
 			const commandFile = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd));
-			console.log('how many times');
 
 			if(commandFile) {
 

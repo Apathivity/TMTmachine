@@ -34,7 +34,7 @@ module.exports = {
 					embed.addField('\u200B', `**⮛ ${capitalise} [${dir.size}] ⮛**\n${commands}`);
 				}
 				catch(e) {
-					console.log(e);
+					console.error(e);
 				}
 			});
 			embed.addField('\u200B', '**⮛ Emoji Reaction Info Bellow [6] ⮛**');

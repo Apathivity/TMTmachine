@@ -8,7 +8,7 @@ module.exports = {
 
 	run: async (bot, reaction, user) => {
 
-		if(!reaction.message.channel.name === 'tmt-level-codes') return console.log('lockout_EMBED');
+		if(!reaction.message.channel.name === 'tmt-level-codes') return;
 
 		// What is the emoji?
 		const emoji = reaction.emoji.name;
@@ -129,8 +129,6 @@ module.exports = {
 											const oldCard = /(\d{18})/.exec(exOutOld);
 											const newCard = /(\d{18})/.exec(exOutNew);
 
-
-											console.log(footArray[2]);
 											// if the message exists, perform the following.
 											if (oldCard && oldCard !== reaction.message.id) {
 												try {

@@ -19,7 +19,7 @@ module.exports = {
 				if (findBot) { return reaction.message.reply('This course has already been added to the queue').then(msg => msg.delete({ timeout: 10000 })); }
 			}
 		}
-		catch { (e => console.log(e)); }
+		catch { (e => console.error(e)); }
 
 		if (!user.id === reaction.message.author.id && !lvlMod) return;
 		if (!reaction.message.channel.name === 'tmt-level-codes') return;

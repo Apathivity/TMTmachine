@@ -43,7 +43,7 @@ module.exports = {
 			let version = '';
 			let newTitle = '';
 
-			console.log(checkEmb);
+			// console.log(checkEmb);
 
 			if(checkEmb) {
 				title = courseCard.embeds[0].title;

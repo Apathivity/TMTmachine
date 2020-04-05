@@ -119,7 +119,7 @@ module.exports = {
 				// if yes, edit the card with the review url (REVIEWER - REVIEW_URL)
 				if(response.emoji.name === '✅') {
 
-					if(embCard.channel.name === cardGoldBoard) {
+					if(embCard.channel.name === cardGoldBoard && lvlMod) {
 
 						const questTwo = await botMessage.edit('OK great!. Now, is this course Approved? ✅ or Rejected? ❌');
 						await questTwo.react('✅');
