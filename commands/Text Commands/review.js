@@ -90,6 +90,7 @@ module.exports = {
 
 		// If a card is found, add the review to the review section (as an embed)
 		if(embCard) {
+
 			const courseTitle = /(((⌈|\|) \d-\d (⌋|\|))(\W.*))/.exec(`${embCard.embeds[0].title}`);
 
 			const botMessage = await message.channel.send(`${message.author.username}, is this review for \`${courseTitle[0]}\`?`);
@@ -100,7 +101,7 @@ module.exports = {
 				const reactUser = message.guild.members.cache.get(creator.id);
 				const userBypass = reactUser.roles.cache.some(role => role.name === 'Level Moderator');
 				if(creator.bot) return;
-				return (['✅', '❌'].includes(react.emoji.name) && creator.id === message.author.id || (['✅', '❌'].includes(react.emoji.name) && userBypass));
+				return ((['✅', '❌'].includes(react.emoji.name) && creator.id === message.author.id) || (['✅', '❌'].includes(react.emoji.name) && userBypass));
 			};
 
 			const collected = await botMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
@@ -119,8 +120,8 @@ module.exports = {
 				// if yes, edit the card with the review url (REVIEWER - REVIEW_URL)
 				if(response.emoji.name === '✅') {
 
-					if(embCard.channel.name === cardGoldBoard && lvlMod) {
-
+					if(embCard.channel.name === cardGoldBoard) {
+					
 						const questTwo = await botMessage.edit('OK great!. Now, is this course Approved? ✅ or Rejected? ❌');
 						await questTwo.react('✅');
 						await questTwo.react('❌');
@@ -142,7 +143,6 @@ module.exports = {
 								if(rResponse.emoji.name === '✅') {
 									Acceptance = '✅';
 								}
-
 								botMessage.reactions.removeAll();
 
 
@@ -172,7 +172,7 @@ module.exports = {
 							});
 					}
 					// If the review is for a beta card =>
-					else {
+					if(embCard.channel.name === cardBetaBoard) {
 						botMessage.edit(`OK, adding the review to the \`${courseTitle[1]}\` course card...`);
 						setTimeout(() => {
 							const oldReview = embCard.embeds[0].fields[2].value;
@@ -190,7 +190,7 @@ module.exports = {
 								.then(botMessage.delete({ timeout: 5000 }))
 								.then(message.react('🌟'))
 								.catch(err => console.error(err));
-							return;
+							return console.log('beta end');
 						}, 5000);
 					}
 				}
