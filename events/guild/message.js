@@ -18,7 +18,12 @@ module.exports = async (bot, message) => {
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/g);
 	const cmd = args.shift().toLowerCase();
+
+	const play = message.guild.emojis.cache.find(emoji => emoji.name === 'play');
 	const skeleKey = message.reactions.cache.some(key => key.emoji.name === '🔑');
+	const skelePlay = message.reactions.cache.some(key => key.emoji.id === '626886420589576193');
+
+
 	try {
 		const ifReview = [`${prefix}review`, `${prefix}Review`];
 
@@ -26,7 +31,7 @@ module.exports = async (bot, message) => {
 			const courseFile = bot.commands.get('submit') || bot.commands.get(bot.aliases.get('submit'));
 			if(courseFile) courseFile.run(bot, message, args);
 		}
-		else if(ifReview.some(word => message.content.includes(word)) || skeleKey && message.channel.name === 'tmt-feedback') {
+		else if(ifReview.some(word => message.content.includes(word)) || skeleKey && message.channel.name === 'tmt-feedback' || skelePlay && message.channel.name === 'tmt-feedback') {
 			const reviewFile = bot.commands.get('review') || bot.commands.get(bot.aliases.get('review'));
 			if(reviewFile) reviewFile.run(bot, message, args);
 		}

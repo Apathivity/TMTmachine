@@ -8,12 +8,13 @@ module.exports = {
 	// eslint-disable-next-line no-unused-vars
 	run: async (bot, message, args) => {
 
-		if(!message.member.roles.cache.some(role => role.name === 'TMT')) return;
+		// if(!message.member.roles.cache.some(role => role.name === 'TMT')) return;
 		if(!message.channel.name === 'tmt-level-codes' || !message.channel.name === 'emt-codes') return;
 		if(message.edits) { message.reactions.removeAll(); }
 
-		// skeleton key useable only by Mods -> this key will bypass the prefix and word check of a command
+		// skeleton keys useable only by Mods -> this key will bypass the prefix and word check of a command
 		const skeleKey = message.reactions.cache.some(key => key.emoji.name === '🔑');
+		const skelePlay = message.reactions.cache.some(key => key.emoji.name === 'play');
 		// console.log('I see a key in message', skeleKey);
 
 		// Regex for finding course code information
@@ -59,7 +60,7 @@ module.exports = {
 					.catch(err => console.error('Error 328', err));
 				return;
 			}
-			else if(!missCritValue || skeleKey) {
+			else if(!missCritValue || skeleKey || skelePlay) {
 				if(missNomValue) { message.channel.send(`${missValue}\nIf you don't want the Version to be \`?\` you may edit the message to add in a Version number`).then(msg => msg.delete({ timeout: 15000 })); }
 				message.react('🔷').then(message.react('🔶'));
 			}
@@ -76,7 +77,7 @@ module.exports = {
 					.catch(err => console.error('Error 328', err));
 				return;
 			}
-			else if(!missEMTValue || !missEMTValue && skeleKey) {
+			else if(!missEMTValue || !missEMTValue && skeleKey || !missEMTValue && skelePlay)  {
 				message.react('❤️');
 			}
 		}

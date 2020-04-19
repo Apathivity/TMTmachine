@@ -14,12 +14,13 @@ module.exports = {
 	run: async (bot, message, args) => {
 
 		const skeleKey = message.reactions.cache.some(key => key.emoji.name === '🔑');
+		const skelePlay = message.reactions.cache.some(key => key.emoji.name === 'play');
 
 		try{
 			const lvlMod = await message.guild.member(message.author).roles.cache.some(role => role.name === 'Level Moderator');
 			const lvlRev = await message.guild.member(message.author).roles.cache.some(role => role.name === 'Level Reviewers');
 			// If the user does not have the appropriate role, exit
-			if(!lvlMod && !lvlRev && !skeleKey) {
+			if(!lvlMod && !lvlRev && !skeleKey && !skelePlay) {
 				return message.reply('Course review will not be added, as you do not have the appropriate role\nA Level Mod may override this with :key:')
 					.then(msg => msg.delete({ timeout: 15000 }))
 					.catch(err => console.error(err));
@@ -190,7 +191,7 @@ module.exports = {
 								.then(botMessage.delete({ timeout: 5000 }))
 								.then(message.react('🌟'))
 								.catch(err => console.error(err));
-							return console.log('beta end');
+							return;
 						}, 5000);
 					}
 				}

@@ -13,7 +13,8 @@ module.exports = {
 		// What is the emoji?
 		const emoji = reaction.emoji.name;
 
-		const reviewRole = reaction.message.guild.roles.cache.get(`611988301167067155`);
+		const pingBeta = reaction.message.guild.roles.cache.get(`701437415482589205`);
+		const pingGold = reaction.message.guild.roles.cache.get(`701437528531796068`);
 
 		// find the gold and beta channels
 		const betaChannel = reaction.message.guild.channels.cache.find(channel => channel.name === cardBetaBoard);
@@ -22,11 +23,13 @@ module.exports = {
 		let symbol = '🔷';
 		let baseQueue = betaChannel;
 		let polarQueue = goldChannel;
+		let reviewPing = pingBeta;
 
 		if(emoji === '🔶') {
 			symbol = '🔶';
 			baseQueue = goldChannel;
 			polarQueue = betaChannel;
+			reviewPing = pingGold;
 		}
 
 		// Constructed list of course code information, using Regex on the message text
@@ -112,7 +115,7 @@ module.exports = {
 									// send the MessageEmbed message to the beta channel
 									try{
 										// send created embed to the appropriate channel
-										baseQueue.send(`${reviewRole}`, { embed });
+										baseQueue.send(`${reviewPing}`, { embed });
 									}
 									catch (e) { console.error('Error EMTembed - Missing final emt channel:', e); }
 
@@ -213,7 +216,7 @@ module.exports = {
 								if(removeResponse.emoji.name === '✅') {
 									botMessage.edit(`OK! Adding new course card of \`${Course[0]}\` to ${baseQueue}...`);
 									// send the embed to the beta channel
-									baseQueue.send(`${reviewRole}`, { embed });
+									baseQueue.send(`${reviewPing}`, { embed });
 
 									// message user that it's done => react with checkmark on message
 									setTimeout(function() {
