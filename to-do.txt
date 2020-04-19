@@ -1,5 +1,0 @@
-when you start Cmder again -> npx nodemon index.js
-================================================================================
-TO DO:
-figure out canvas to make fun dynamic images
-figure out how to get this thing on an online server
